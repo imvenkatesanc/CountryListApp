@@ -1,0 +1,32 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CountryListApp.MainPage"
+             Title="Country List">
+    <ScrollView>
+        <StackLayout Padding="10">
+            <CollectionView ItemsSource="{Binding Countries}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="10" HasShadow="True">
+                            <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto">
+                                <!-- Country Flag -->
+                                <Image Grid.Column="0" WidthRequest="50" HeightRequest="30"
+                                       Source="{Binding Flags.Png}" VerticalOptions="Center" />
+
+                                <!-- Country Details -->
+                                <StackLayout Grid.Column="1" Padding="10,0,0,0" VerticalOptions="Center">
+                                    <Label Text="{Binding Name.Common}" FontAttributes="Bold" FontSize="16" />
+                                    <Label Text="{Binding Capital[0]}" FontSize="14" TextColor="Gray" />
+                                    <Label Text="{Binding Population, StringFormat='Population: {0:N0}'}" FontSize="14" TextColor="Gray" />
+                                </StackLayout>
+
+                                <!-- Show on Map Button -->
+                                <Button Grid.Column="2" Text="Show on Map" VerticalOptions="Center" Clicked="OnShowOnMapButtonClicked" CommandParameter="{Binding Maps.GoogleMaps}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
